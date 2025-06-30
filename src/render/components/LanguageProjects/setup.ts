@@ -58,7 +58,7 @@ class Project {
   addProject() {
     const setupStore = SetupStore()
     // Loại bỏ giới hạn bản quyền - cho phép tạo không giới hạn project
-    const isLock = !setupStore.isActive && this.project.length > 2
+    const isLock = !setupStore.isActive && this.project.length > 20
     if (isLock) {
       MessageWarning(I18nT('host.licenseTips'))
       // return

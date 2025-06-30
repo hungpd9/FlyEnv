@@ -1,7 +1,7 @@
 import type { Configuration } from 'electron-builder'
 import PublishConfig from './publish'
 import AfterPack from '../build/afterPack'
-import Notarize from '../build/notarize'
+// import Notarize from '../build/notarize'
 /**
  * one environment
  * envlab
@@ -57,8 +57,7 @@ const conf: Configuration = {
     target: {
       target: 'default',
       // target: 'pkg',
-      // arch: ['x64', 'arm64']
-      arch: ['arm64']
+      arch: ['x64', 'arm64'] // Build cho cả Intel và Apple Silicon
     },
     asarUnpack: ['**/*.node'],
     extendInfo: {
@@ -66,20 +65,22 @@ const conf: Configuration = {
       CFBundleDisplayName: 'FlyEnv',
       CFBundleExecutable: 'PhpWebStudy'
     },
-    type: 'distribution',
+    type: 'development', // Đổi từ distribution sang development
     darkModeSupport: true,
     category: 'public.app-category.developer-tools',
+    // Vô hiệu hóa các tính năng bảo mật cho bản build local
     entitlements: 'build/entitlements.mac.plist',
     entitlementsInherit: 'build/entitlements.mac.plist',
-    hardenedRuntime: true,
+    hardenedRuntime: false, // Tắt hardened runtime
     gatekeeperAssess: false
   },
   afterPack: (...args) => {
     return AfterPack(...args) as any
   },
-  afterSign: (...args) => {
-    return Notarize(...args)
-  },
+  // Tạm thời bỏ qua bước notarize cho bản build local
+  // afterSign: (...args) => {
+  //   return Notarize(...args)
+  // },
   publish: [PublishConfig]
 }
 
