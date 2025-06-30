@@ -57,11 +57,12 @@ class Project {
   }
   addProject() {
     const setupStore = SetupStore()
-    const isLock = !setupStore.isActive && this.project.length > 2
-    if (isLock) {
-      MessageError(I18nT('host.licenseTips'))
-      return
-    }
+    // Loại bỏ giới hạn bản quyền - cho phép tạo không giới hạn project
+    // const isLock = !setupStore.isActive && this.project.length > 2
+    // if (isLock) {
+    //   MessageError(I18nT('host.licenseTips'))
+    //   return
+    // }
     dialog
       .showOpenDialog({
         properties: ['openDirectory', 'createDirectory', 'showHiddenFiles']

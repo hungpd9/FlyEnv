@@ -419,7 +419,7 @@
   const setupStore = SetupStore()
 
   const isLock = computed(() => {
-    return !setupStore.isActive && item.value.item.length > 2
+    return false // Loại bỏ giới hạn bản quyền
   })
 
   const toLicense = () => {

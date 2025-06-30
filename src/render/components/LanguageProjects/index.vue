@@ -238,7 +238,7 @@
   const setupStore = SetupStore()
 
   const isLock = computed(() => {
-    return !setupStore.isActive && project.project.length > 2
+    return false // Loại bỏ giới hạn bản quyền
   })
 
   const toLicense = () => {
