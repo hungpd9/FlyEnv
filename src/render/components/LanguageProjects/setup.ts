@@ -4,7 +4,7 @@ import localForage from 'localforage'
 import Base from '@/core/Base'
 import { uuid } from '@/util/Index'
 import IPC from '@/util/IPC'
-import { MessageError } from '@/util/Element'
+import { MessageError, MessageWarning } from '@/util/Element'
 import { AllAppModule } from '@/core/type'
 import { SetupStore } from '@/components/Setup/store'
 import { join } from '@/util/path-browserify'
@@ -58,11 +58,11 @@ class Project {
   addProject() {
     const setupStore = SetupStore()
     // Loại bỏ giới hạn bản quyền - cho phép tạo không giới hạn project
-    // const isLock = !setupStore.isActive && this.project.length > 2
-    // if (isLock) {
-    //   MessageError(I18nT('host.licenseTips'))
-    //   return
-    // }
+    const isLock = !setupStore.isActive && this.project.length > 2
+    if (isLock) {
+      MessageWarning(I18nT('host.licenseTips'))
+      // return
+    }
     dialog
       .showOpenDialog({
         properties: ['openDirectory', 'createDirectory', 'showHiddenFiles']
