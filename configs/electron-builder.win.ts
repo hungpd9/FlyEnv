@@ -22,7 +22,7 @@ const conf: Configuration = {
   artifactName: 'FlyEnv Setup ${version}.${ext}',
   win: {
     artifactName: 'FlyEnv Setup ${version}.${ext}',
-    icon: 'build/icon.ico',
+    icon: 'static/512x512.png',
     requestedExecutionLevel: 'requireAdministrator',
     target: [
       {
